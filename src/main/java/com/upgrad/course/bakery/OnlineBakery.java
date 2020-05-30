@@ -9,24 +9,18 @@ public class OnlineBakery {
     private CakeInventory cakeInventory;
 
     // TODO: define constructor which takes CakeInventory as an argument
-    public OnlineBakery(CakeInventory cakeInventory) {
-        this.cakeInventory = cakeInventory;
-    }
 
     // TODO: define setter for BreadInventory
-    public void setBreadInventory(BreadInventory breadInventory) {
-        this.breadInventory = breadInventory;
-    }
 
     public int getBreadsRemaining() {
 
-        // TODO: call getTotal method of BreadInventory class
-        return breadInventory.getTotal();
+        // TODO: call getTotal method of BreadInventory class and return the value
+        return -1;
     }
 
     public int getCakesRemaining() {
 
-        // TODO: call getTotal method of CakeInventory class
-        return cakeInventory.getTotal();
+        // TODO: call getTotal method of CakeInventory class and return the value
+        return -1;
     }
 }
