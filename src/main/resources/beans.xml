@@ -6,4 +6,19 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <!-- TODO: define bean of OnlineBakery which uses
+     1. constructor injection for CakeInventory
+     2. setter injection for BreadInventory -->
+    <bean id = "onlineBakery" class = "com.upgrad.course.bakery.OnlineBakery">
+        <constructor-arg ref = "cakeInventory"/>
+        <property name = "breadInventory" ref = "breadInventory"/>
+    </bean>
+
+    <!-- TODO: define bean of CakeInventory to be used for constructor injection using ref -->
+    <bean id = "cakeInventory" class = "com.upgrad.course.inventory.CakeInventory">
+    </bean>
+
+    <!-- TODO: define bean of BreadInventory to be used for setter injection using ref -->
+    <bean id = "breadInventory" class = "com.upgrad.course.inventory.BreadInventory">
+    </bean>
 </beans>
