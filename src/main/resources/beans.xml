@@ -1,9 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <!-- TODO: define OrangeJuice bean to inject dependencies via byName autowiring  -->
+    <bean id="orangeJuice" class="com.upgrad.course.juice.OrangeJuice" autowire="byName">
+    </bean>
+
+    <!-- TODO: define Orange class bean  -->
+    <bean id="orange" class="com.upgrad.course.fruit.Orange">
+    </bean>
+
+    <!-- TODO: define StrawberryJuice bean to inject dependencies via byType autowiring  -->
+    <bean id="strawberryJuice" class="com.upgrad.course.juice.StrawberryJuice" autowire="byType">
+    </bean>
+
+    <!-- TODO: define Strawberry class bean  -->
+    <bean id="strawberry" class="com.upgrad.course.fruit.Strawberry">
+    </bean>
+
+    <!-- TODO: define BananaJuice bean to inject dependencies via constructor autowiring  -->
+    <bean id="bananaJuice" class="com.upgrad.course.juice.BananaJuice" autowire="constructor">
+    </bean>
+
+    <!-- TODO: define Banana class bean  -->
+    <bean id="banana" class="com.upgrad.course.fruit.Banana">
+    </bean>
 </beans>
