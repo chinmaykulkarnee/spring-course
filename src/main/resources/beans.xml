@@ -6,4 +6,53 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <!-- TODO: enable component scan for classes in school package -->
+    <context:component-scan base-package="com.upgrad.course.school" />
+
+    <!-- TODO: define bean of StudentFactory with set injection for 3 students -->
+    <bean id="studentFactory" class="com.upgrad.course.factory.StudentFactory">
+        <property name="students">
+            <set>
+                <ref bean = "harry" />
+                <ref bean = "ron" />
+                <ref bean = "hermione" />
+            </set>
+        </property>
+    </bean>
+
+    <!-- TODO: define bean of Student with name=Harry and id=student1 -->
+    <bean id="harry" class="com.upgrad.course.school.Student">
+        <constructor-arg index="0" value="Harry"/>
+        <constructor-arg index="1" value="student1"/>
+    </bean>
+
+    <!-- TODO: define bean of Student with name=Ron and id=student2 -->
+    <bean id="ron" class="com.upgrad.course.school.Student">
+        <constructor-arg index="0" value="Ron"/>
+        <constructor-arg index="1" value="student2"/>
+    </bean>
+
+    <!-- TODO: define bean of Student with name=Hermione and id=student3 -->
+    <bean id="hermione" class="com.upgrad.course.school.Student">
+        <constructor-arg index="0" value="Hermione"/>
+        <constructor-arg index="1" value="student3"/>
+    </bean>
+
+    <!-- TODO: define bean of BenchFactory with list injection for 2 benches -->
+    <bean id="benchFactory" class="com.upgrad.course.factory.BenchFactory">
+        <property name="benches">
+            <list>
+                <ref bean = "wooden" />
+                <ref bean = "steel" />
+            </list>
+        </property>
+    </bean>
+
+    <!-- TODO: define bean of Bench -->
+    <bean id="wooden" class="com.upgrad.course.school.Bench">
+    </bean>
+    <!-- TODO: define another bean of Bench -->
+    <bean id="steel" class="com.upgrad.course.school.Bench">
+    </bean>
+
 </beans>
