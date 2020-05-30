@@ -7,30 +7,15 @@
     http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- TODO: enable annotation based annotations -->
-    <context:annotation-config/>
 
     <!-- TODO: define bean of ClassA -->
-    <bean id = "classA" class = "com.upgrad.course.school.ClassA">
-    </bean>
 
     <!-- TODO: define bean of student using constructor based property injection -->
-    <bean id = "student" class = "com.upgrad.course.school.Student">
-        <constructor-arg index="0" value="Harry Potter"/>
-        <constructor-arg index="1" value="student1"/>
-    </bean>
 
     <!-- TODO: define bean of teacher using setter based property injection -->
-    <bean id = "teacher" class = "com.upgrad.course.school.Teacher">
-        <property name = "name" value = "Albus Dumbledore" />
-    </bean>
 
     <!-- TODO: define bean of bench using constructor based property injection with type value as "Wooden" -->
-    <bean id = "woodenBench" class = "com.upgrad.course.school.Bench">
-        <constructor-arg index="0" value="Wooden"/>
-    </bean>
 
     <!-- TODO: define another bean of bench using constructor based property injection with type value as "Steel" -->
-    <bean id = "steelBench" class = "com.upgrad.course.school.Bench">
-        <constructor-arg index="0" value="Steel"/>
-    </bean>
+
 </beans>
