@@ -1,24 +1,22 @@
 package com.upgrad.course;
 
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-/**
- * Hello world!
- *
- */
 public class App {
     public static void main( String[] args ) {
         System.out.println( "Hello World!" );
-        ApplicationContext ctx = new ClassPathXmlApplicationContext( "beans.xml" );
-
-        Employee employee = ctx.getBean(Employee.class);
-
-        System.out.println(employee);
     }
 
-    public Employee getEmployee() {
-        ApplicationContext ctx = new ClassPathXmlApplicationContext( "beans.xml" );
-        return ctx.getBean(Employee.class);
+    // TODO: change return type of method to return Employee
+    public Object getEmployee() {
+
+        // TODO: initialize ApplicationContext to read bean definitions from beans.xml using ClassPathXmlApplicationContext
+        ApplicationContext ctx = null;
+
+        // TODO: get bean of Employee class using ApplicationContext
+        ctx.getBean(Object.class);
+
+        // TODO: return bean of Employee class
+        return null;
     }
 }

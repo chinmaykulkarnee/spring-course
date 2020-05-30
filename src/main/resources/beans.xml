@@ -6,6 +6,7 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="employee"  class="com.upgrad.course.Employee"></bean>
+    <!--TODO: define bean of employee class-->
+    <!--<bean id="employee"  ></bean>-->
 
 </beans>
