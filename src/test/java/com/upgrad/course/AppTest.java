@@ -10,10 +10,4 @@ public class AppTest {
     public void shouldInitializeEmployeeBean() {
         Assert.assertNotNull(underTest.getEmployee());
     }
-
-    @Test
-    public void shouldBeAbleToCallMethodsOnInitializedEmployeeBean() {
-        Employee employee = underTest.getEmployee();
-        Assert.assertEquals("name", employee.getName());
-    }
 }
