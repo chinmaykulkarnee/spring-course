@@ -21,25 +21,21 @@ public class ProductService {
     // TODO: implement method to save product to the database
     @Transactional
     public void add(Product product) {
-        productRepository.save(product);
     }
 
     // TODO: implement method to get all the products from the database
     @Transactional
     public List<Product> listAll() {
-        return productRepository.findAll();
     }
 
     // TODO: implement method to get details of the product by name from the database
     @Transactional
     public List<Product> getDetails(String name) {
-        return productRepository.findByName(name);
     }
 
     // TODO: implement method to get list of products greater than given price from the database
     @Transactional
     public List<Product> getProductsByPriceGreaterThan(Integer price) {
-        return productRepository.findByPriceGreaterThan(price);
     }
 
     @Transactional
