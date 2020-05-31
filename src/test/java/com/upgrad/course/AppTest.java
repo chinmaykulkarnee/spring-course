@@ -1,9 +1,11 @@
 package com.upgrad.course;
 
-import com.upgrad.course.model.Student;
+import com.upgrad.course.entity.Product;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.List;
 
 public class AppTest {
 
@@ -15,19 +17,31 @@ public class AppTest {
     }
 
     @Test
-    public void shouldCreateNewStudentSuccessfully() {
-        int result = underTest.createStudent("Harry", 16);
+    public void shouldAddProductToDb() {
+        underTest.addProduct("Ice-cream", 10);
 
-        Assert.assertEquals(1, result);
+        Product product = underTest.getProductDetails("Ice-cream");
+        Assert.assertSame(10, product.getPrice());
+        Assert.assertEquals("Ice-cream", product.getName());
     }
 
     @Test
-    public void shouldGetStudentSuccessfully() {
-        underTest.createStudent("Harry", 16);
+    public void shouldGetProductDetailsFromDb() {
+        underTest.addProduct("Chocolate", 2);
 
-        Student result = underTest.getStudentDetails("Harry");
+        Product product = underTest.getProductDetails("Chocolate");
 
-        Assert.assertEquals("Harry", result.getName());
-        Assert.assertSame(16, result.getAge());
+        Assert.assertSame(2, product.getPrice());
+        Assert.assertEquals("Chocolate", product.getName());
+    }
+
+    @Test
+    public void shouldGetAllProductsFromDb() {
+        underTest.addProduct("Candy", 1);
+        underTest.addProduct("Cake", 25);
+
+        List<Product> products = underTest.getAllProducts();
+
+        Assert.assertSame(2, products.size());
     }
 }

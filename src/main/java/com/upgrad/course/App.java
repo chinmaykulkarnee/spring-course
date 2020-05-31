@@ -1,41 +1,32 @@
 package com.upgrad.course;
 
-import com.upgrad.course.dao.StudentJDBCTemplate;
-import com.upgrad.course.model.Student;
-import org.springframework.context.ApplicationContext;
+import com.upgrad.course.entity.Product;
+import com.upgrad.course.service.ProductService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.List;
 
 public class App {
     public static void main( String[] args ) {
-        System.out.println( "Hello JDBC!" );
+        System.out.println( "Hello JPA!" );
     }
 
-    ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-    StudentJDBCTemplate studentJDBCTemplate = (StudentJDBCTemplate)context.getBean("studentJDBCTemplate");
+    ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
+    ProductService productService = ctx.getBean(ProductService.class);
 
-    public int createStudent(String name, Integer age) {
-        return studentJDBCTemplate.create(name, age);
+    public void addProduct(String name, Integer price) {
+        productService.add(new Product(name, price));
     }
 
-    public Student getStudentDetails(String name) {
-        return studentJDBCTemplate.getStudent(name);
+    public Product getProductDetails(String name) {
+        return productService.getDetails(name);
     }
 
-    public int updateStudentAge(Integer id, Integer age) {
-        return studentJDBCTemplate.update(id, age);
-    }
-
-    public int deleteStudent(Integer id) {
-        return studentJDBCTemplate.delete(id);
-    }
-
-    public List<Student> getStudents() {
-        return studentJDBCTemplate.listStudents();
+    public List<Product> getAllProducts() {
+        return productService.listAll();
     }
 
     public void deleteAll() {
-        studentJDBCTemplate.deleteAll();
+        productService.deleteAll();
     }
 }
