@@ -11,9 +11,6 @@ public class StudentMapper implements RowMapper {
         Student student = new Student();
 
         // TODO: map id, name, age fields using ResultSet
-        student.setId(rs.getInt("id"));
-        student.setName(rs.getString("name"));
-        student.setAge(rs.getInt("age"));
 
         return student;
     }
