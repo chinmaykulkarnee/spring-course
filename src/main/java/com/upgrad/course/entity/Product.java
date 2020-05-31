@@ -2,17 +2,10 @@ package com.upgrad.course.entity;
 
 import javax.persistence.*;
 
-
 @Entity
 // TODO: define 2 named queries using @NamedQueries and @NamedQuery annotations
 // 1. query for findAll products
 // 2. query for findByName product
-@NamedQueries({
-        @NamedQuery(name="Product.findAll",
-                query="SELECT p FROM Product p"),
-        @NamedQuery(name="Product.findByName",
-                query="SELECT p FROM Product p WHERE p.name = :name"),
-})
 public class Product {
 
     @Id
