@@ -5,6 +5,7 @@ import com.upgrad.course.service.ProductService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.List;
+import java.util.Optional;
 
 public class App {
     public static void main( String[] args ) {
@@ -18,12 +19,18 @@ public class App {
         productService.add(new Product(name, price));
     }
 
-    public Product getProductDetails(String name) {
-        return productService.getDetails(name);
+    public Optional<Product> getProductDetails(String name) {
+        return productService.getDetails(name)
+                .stream()
+                .findFirst();
     }
 
     public List<Product> getAllProducts() {
         return productService.listAll();
+    }
+
+    public List<Product> getProductsWithPriceGreaterThan(Integer price) {
+        return productService.getProductsByPriceGreaterThan(price);
     }
 
     public void deleteAll() {

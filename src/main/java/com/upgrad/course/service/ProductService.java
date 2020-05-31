@@ -1,47 +1,49 @@
 package com.upgrad.course.service;
 
-import com.upgrad.course.dao.ProductDao;
 import com.upgrad.course.entity.Product;
+import com.upgrad.course.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Collection;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Component
 public class ProductService {
 
-    private final ProductDao productDao;
+    private final ProductRepository productRepository;
 
     @Autowired
-    public ProductService(ProductDao productDao) {
-        this.productDao = productDao;
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
     }
 
-    // TODO: use Transactional annotation to make method transactional
+    // TODO: implement method to save product to the database
+    @Transactional
     public void add(Product product) {
-        productDao.persist(product);
+        productRepository.save(product);
     }
 
-    // TODO: use Transactional annotation to make method transactional
-    public void addAll(Collection<Product> products) {
-        for (Product product : products) {
-            productDao.persist(product);
-        }
-    }
-
-    // TODO: use Transactional annotation to make method transactional
+    // TODO: implement method to get all the products from the database
+    @Transactional
     public List<Product> listAll() {
-        return productDao.findAll();
+        return productRepository.findAll();
     }
 
-    // TODO: use Transactional annotation to make method transactional
-    public Product getDetails(String name) {
-        return productDao.find(name);
+    // TODO: implement method to get details of the product by name from the database
+    @Transactional
+    public List<Product> getDetails(String name) {
+        return productRepository.findByName(name);
     }
 
-    // TODO: use Transactional annotation to make method transactional
+    // TODO: implement method to get list of products greater than given price from the database
+    @Transactional
+    public List<Product> getProductsByPriceGreaterThan(Integer price) {
+        return productRepository.findByPriceGreaterThan(price);
+    }
+
+    @Transactional
     public void deleteAll() {
-        productDao.deleteAll();
+        productRepository.deleteAll();
     }
 }

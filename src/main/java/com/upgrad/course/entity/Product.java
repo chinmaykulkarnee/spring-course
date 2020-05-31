@@ -1,11 +1,9 @@
 package com.upgrad.course.entity;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
-// TODO: define 2 named queries using @NamedQueries and @NamedQuery annotations
-// 1. query for findAll products
-// 2. query for findByName product
 public class Product {
 
     @Id
@@ -52,5 +50,19 @@ public class Product {
     @Override
     public String toString() {
         return "Product [id=" + id + ", name=" + name + ", price=" + price + "]";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Objects.equals(name, product.name) &&
+                Objects.equals(price, product.price);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, price);
     }
 }
