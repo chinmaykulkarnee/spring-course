@@ -12,6 +12,8 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <spring.version>5.2.0.RELEASE</spring.version>
+    <spring.jdbc.version>2.0.6</spring.jdbc.version>
+    <mysql.connector.version>8.0.20</mysql.connector.version>
   </properties>
 
   <dependencies>
@@ -30,6 +32,17 @@
       <artifactId>spring-beans</artifactId>
       <version>${spring.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>${spring.jdbc.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>${mysql.connector.version}</version>
+    </dependency>
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
