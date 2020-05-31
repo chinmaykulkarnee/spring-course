@@ -1,12 +1,11 @@
 package com.upgrad.course;
 
-import com.upgrad.course.entity.Passport;
-import com.upgrad.course.entity.Person;
+import com.upgrad.course.entity.Item;
+import com.upgrad.course.entity.Order;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.List;
 import java.util.Optional;
 
 public class AppTest {
@@ -15,24 +14,49 @@ public class AppTest {
 
     @Before
     public void clean() {
-        underTest.deleteAllPersons();
-        underTest.deleteAllPassports();
+        underTest.deleteAllItems();
+        underTest.deleteAllOrders();
     }
 
     @Test
     public void shouldAddPersonAndPassportToDb() {
-        underTest.addPerson("Harry", "Potter", "UK-1111-Harry-1");
+        underTest.addOrder("Harry");
 
-        Optional<Person> mayBePerson = underTest.getPersonDetails("Harry");
-        Assert.assertTrue(mayBePerson.isPresent());
-        Person person = mayBePerson.get();
-        Assert.assertEquals("Harry", person.getFirstName());
-        Assert.assertEquals("Potter", person.getLastName());
-        Assert.assertEquals("UK-1111-Harry-1", person.getPassport().getNumber());
+        Optional<Order> mayBeOrder = underTest.getOrderDetails("Harry");
+        Assert.assertTrue(mayBeOrder.isPresent());
+        Order order = mayBeOrder.get();
+        Assert.assertEquals("Harry", order.getUserId());
 
-        Optional<Passport> mayBePassport = underTest.getPassportDetails("UK-1111-Harry-1");
-        Assert.assertTrue(mayBePassport.isPresent());
-        Passport passport = mayBePassport.get();
-        Assert.assertEquals("UK-1111-Harry-1", passport.getNumber());
+        underTest.addItem("Cake", 20L, order);
+        Optional<Item> mayBeItem = underTest.getItemDetail("Cake");
+        Assert.assertTrue(mayBeItem.isPresent());
+        Item item = mayBeItem.get();
+        Assert.assertEquals("Cake", item.getName());
+        Assert.assertEquals(20, (long) item.getPrice());
+
+        Optional<Order> mayBeOrderAfter = underTest.getOrderDetails("Harry");
+        Assert.assertTrue(mayBeOrderAfter.isPresent());
+        Order orderWithItem = mayBeOrderAfter.get();
+        Assert.assertTrue(orderWithItem.getItems().contains(new Item("Cake", 20L)));
+    }
+
+    @Test
+    public void shouldAddMultipleItemsForOrderToDb() {
+        underTest.addOrder("Harry");
+
+        Optional<Order> mayBeOrder = underTest.getOrderDetails("Harry");
+        Assert.assertTrue(mayBeOrder.isPresent());
+        Order order = mayBeOrder.get();
+        Assert.assertEquals("Harry", order.getUserId());
+
+        underTest.addItem("Cake", 20L, order);
+        underTest.addItem("Bread", 20L, order);
+
+        Optional<Order> mayBeOrderAfter = underTest.getOrderDetails("Harry");
+        Assert.assertTrue(mayBeOrderAfter.isPresent());
+        Order orderWithItem = mayBeOrderAfter.get();
+        Assert.assertEquals(2, orderWithItem.getItems().size());
+        Assert.assertTrue(orderWithItem.getItems().contains(new Item("Cake", 20L)));
+        Assert.assertTrue(orderWithItem.getItems().contains(new Item("Bread", 20L)));
     }
 }

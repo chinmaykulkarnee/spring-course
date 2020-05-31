@@ -1,9 +1,9 @@
 package com.upgrad.course;
 
-import com.upgrad.course.entity.Passport;
-import com.upgrad.course.entity.Person;
-import com.upgrad.course.service.PassportService;
-import com.upgrad.course.service.PersonService;
+import com.upgrad.course.entity.Item;
+import com.upgrad.course.entity.Order;
+import com.upgrad.course.service.ItemService;
+import com.upgrad.course.service.OrderService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.List;
@@ -15,41 +15,46 @@ public class App {
     }
 
     ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
-    PassportService passportService = ctx.getBean(PassportService.class);
-    PersonService personService = ctx.getBean(PersonService.class);
+    ItemService itemService = ctx.getBean(ItemService.class);
+    OrderService orderService = ctx.getBean(OrderService.class);
 
 
-    public void addPerson(String firstName, String lastName, String passportNumber) {
-        Person person = new Person(firstName, lastName);
-        person.setPassport(new Passport(passportNumber));
-        personService.add(person);
+    public void addOrder(String userId) {
+        Order order = new Order(userId);
+        orderService.add(order);
     }
 
-    public Optional<Passport> getPassportDetails(String number) {
-        return passportService.getDetails(number)
+    public void addItem(String name, Long price, Order order) {
+        Item item = new Item(name, price);
+        item.setOrder(order);
+        itemService.add(item);
+    }
+
+    public Optional<Item> getItemDetail(String name) {
+        return itemService.getDetails(name)
                 .stream()
                 .findFirst();
     }
 
-    public Optional<Person> getPersonDetails(String firstName) {
-        return personService.getDetailsByFirstName(firstName)
+    public Optional<Order> getOrderDetails(String userId) {
+        return orderService.getDetailsByUserId(userId)
                 .stream()
                 .findFirst();
     }
 
-    public List<Passport> getAllPassports() {
-        return passportService.listAll();
+    public List<Item> getAllItems() {
+        return itemService.listAll();
     }
 
-    public List<Person> getAllPersons() {
-        return personService.listAll();
+    public List<Order> getAllOrders() {
+        return orderService.listAll();
     }
 
-    public void deleteAllPersons() {
-        personService.deleteAll();
+    public void deleteAllOrders() {
+        orderService.deleteAll();
     }
 
-    public void deleteAllPassports() {
-        passportService.deleteAll();
+    public void deleteAllItems() {
+        itemService.deleteAll();
     }
 }
