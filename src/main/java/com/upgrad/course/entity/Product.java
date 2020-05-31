@@ -1,9 +1,22 @@
 package com.upgrad.course.entity;
 
-// TODO: mark this class as database entity
+import javax.persistence.*;
+
+
+@Entity
+// TODO: define 2 named queries using @NamedQueries and @NamedQuery annotations
+// 1. query for findAll products
+// 2. query for findByName product
+@NamedQueries({
+        @NamedQuery(name="Product.findAll",
+                query="SELECT p FROM Product p"),
+        @NamedQuery(name="Product.findByName",
+                query="SELECT p FROM Product p WHERE p.name = :name"),
+})
 public class Product {
 
-    // TODO: define id as primary key with auto incrementing value
+    @Id
+    @GeneratedValue
     private Integer id;
 
     private String name;

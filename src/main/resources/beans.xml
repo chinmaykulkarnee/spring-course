@@ -20,6 +20,12 @@
     <!-- TODO: define bean of DriverManagerDataSource with required properties
      use driverClassName=com.mysql.cj.jdbc.Driver
      db-name = TEST, db-username = root, db-password = ""(empty string) -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/TEST" />
+        <property name="username" value="root" />
+        <property name="password" value="" />
+    </bean>
 
 
     <!-- TODO: define bean of LocalContainerEntityManagerFactoryBean with required properties
@@ -27,7 +33,7 @@
     <bean id="entityManagerFactory"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
           p:packagesToScan="com.upgrad.course.entity"
-          p:dataSource-ref="fill-here">
+          p:dataSource-ref="dataSource">
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
                 <property name="generateDdl" value="true" />
@@ -36,27 +42,10 @@
         </property>
     </bean>
 
-    <!-- AOP Configuration for selecting transactional methods -->
-    <!-- the transactional advice (what 'happens'; see the <aop:advisor/> ) -->
-    <tx:advice id="txAdvice" transaction-manager="transactionManager">
-        <tx:attributes>
-            <!-- all methods starting with 'list' or 'get' are read-only -->
-            <tx:method name="list*" read-only="true"/>
-            <tx:method name="get*" read-only="true"/>
-            <!-- for other methods use the default transaction settings -->
-            <tx:method name="*" />
-        </tx:attributes>
-    </tx:advice>
-    <!-- ensure that the above transactional advice runs for any execution
-        of a method in the service package -->
-    <aop:config>
-        <aop:pointcut id="serviceMethods"
-                      expression="execution(* com.upgrad.course.service.*.*(..))" />
-        <aop:advisor pointcut-ref="serviceMethods" advice-ref="txAdvice" />
-    </aop:config>
-
-    <!-- TransactionManager -->
+    <!-- Transactions -->
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory" />
     </bean>
+    <!-- enable the configuration of transactional behavior based on annotations -->
+    <tx:annotation-driven transaction-manager="transactionManager" />
 </beans>

@@ -5,26 +5,33 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Component
 public class ProductDao {
 
     // TODO: Inject EntityManager using special annotation @PersistenceContext
+    @PersistenceContext
     private EntityManager em;
 
     // TODO: use EntityManager method to save product to database
     public void persist(Product product) {
+        em.persist(product);
     }
 
-    // TODO: use EntityManager method to get product by name from the database (hint: use query parameters as ?1)
+    // TODO: use EntityManager createNamedQuery method to get product by name from the database
     public Product find(String name) {
-        return null;
+        TypedQuery<Product> query = em.createNamedQuery("Product.findByName", Product.class);
+        return query
+                .setParameter("name", name)
+                .getSingleResult();
     }
 
-    // TODO: use EntityManager method to get products from the database
+    // TODO: use EntityManager createNamedQuery method to get products from the database
     public List<Product> findAll() {
-        return null;
+        TypedQuery<Product> query = em.createNamedQuery("Product.findAll", Product.class);
+        return query.getResultList();
     }
 
     public void deleteAll() {
