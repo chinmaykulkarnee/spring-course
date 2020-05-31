@@ -35,20 +35,4 @@ public class AppTest {
         Passport passport = mayBePassport.get();
         Assert.assertEquals("UK-1111-Harry-1", passport.getNumber());
     }
-
-    @Test
-    public void shouldGetAllPersonsWithPassportsFromDb() {
-        underTest.addPerson("Harry", "Potter", "UK-1111-Harry-1");
-        underTest.addPerson("Ron", "Weasley", "UK-2222-Ron-1");
-
-        List<Person> allPersons = underTest.getAllPersons();
-        Assert.assertEquals(2, allPersons.size());
-        Assert.assertTrue(allPersons.contains(new Person("Harry", "Potter")));
-        Assert.assertTrue(allPersons.contains(new Person("Ron", "Weasley")));
-
-        List<Passport> allPassports = underTest.getAllPassports();
-        Assert.assertEquals(2, allPassports.size());
-        Assert.assertTrue(allPassports.contains(new Passport("UK-1111-Harry-1")));
-        Assert.assertTrue(allPassports.contains(new Passport("UK-2222-Ron-1")));
-    }
 }

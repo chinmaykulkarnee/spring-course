@@ -23,19 +23,18 @@ public class PersonService {
     // you will need to be concerned only about the PersonRepository
     @Transactional
     public void add(Person person) {
-        personRepository.save(person);
     }
 
     // TODO: implement method to get all the persons from the database
     @Transactional
     public List<Person> listAll() {
-        return personRepository.findAll();
+        return null;
     }
 
     // TODO: implement method to get details of the person by first name from the database
     @Transactional
     public List<Person> getDetailsByFirstName(String firstName) {
-        return personRepository.findByFirstName(firstName);
+        return null;
     }
 
     @Transactional
