@@ -1,7 +1,9 @@
 package com.upgrad.course;
 
-import com.upgrad.course.entity.Product;
-import com.upgrad.course.service.ProductService;
+import com.upgrad.course.entity.Passport;
+import com.upgrad.course.entity.Person;
+import com.upgrad.course.service.PassportService;
+import com.upgrad.course.service.PersonService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.List;
@@ -13,27 +15,41 @@ public class App {
     }
 
     ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
-    ProductService productService = ctx.getBean(ProductService.class);
+    PassportService passportService = ctx.getBean(PassportService.class);
+    PersonService personService = ctx.getBean(PersonService.class);
 
-    public void addProduct(String name, Integer price) {
-        productService.add(new Product(name, price));
+
+    public void addPerson(String firstName, String lastName, String passportNumber) {
+        Person person = new Person(firstName, lastName);
+        person.setPassport(new Passport(passportNumber));
+        personService.add(person);
     }
 
-    public Optional<Product> getProductDetails(String name) {
-        return productService.getDetails(name)
+    public Optional<Passport> getPassportDetails(String number) {
+        return passportService.getDetails(number)
                 .stream()
                 .findFirst();
     }
 
-    public List<Product> getAllProducts() {
-        return productService.listAll();
+    public Optional<Person> getPersonDetails(String firstName) {
+        return personService.getDetailsByFirstName(firstName)
+                .stream()
+                .findFirst();
     }
 
-    public List<Product> getProductsWithPriceGreaterThan(Integer price) {
-        return productService.getProductsByPriceGreaterThan(price);
+    public List<Passport> getAllPassports() {
+        return passportService.listAll();
     }
 
-    public void deleteAll() {
-        productService.deleteAll();
+    public List<Person> getAllPersons() {
+        return personService.listAll();
+    }
+
+    public void deleteAllPersons() {
+        personService.deleteAll();
+    }
+
+    public void deleteAllPassports() {
+        passportService.deleteAll();
     }
 }

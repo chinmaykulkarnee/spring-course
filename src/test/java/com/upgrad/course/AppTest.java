@@ -1,6 +1,7 @@
 package com.upgrad.course;
 
-import com.upgrad.course.entity.Product;
+import com.upgrad.course.entity.Passport;
+import com.upgrad.course.entity.Person;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,29 +15,40 @@ public class AppTest {
 
     @Before
     public void clean() {
-        underTest.deleteAll();
+        underTest.deleteAllPersons();
+        underTest.deleteAllPassports();
     }
 
     @Test
-    public void shouldAddProductToDb() {
-        underTest.addProduct("Ice-cream", 10);
+    public void shouldAddPersonAndPassportToDb() {
+        underTest.addPerson("Harry", "Potter", "UK-1111-Harry-1");
 
-        Optional<Product> mayBeProduct = underTest.getProductDetails("Ice-cream");
-        Assert.assertTrue(mayBeProduct.isPresent());
-        Product product = mayBeProduct.get();
-        Assert.assertSame(10, product.getPrice());
-        Assert.assertEquals("Ice-cream", product.getName());
+        Optional<Person> mayBePerson = underTest.getPersonDetails("Harry");
+        Assert.assertTrue(mayBePerson.isPresent());
+        Person person = mayBePerson.get();
+        Assert.assertEquals("Harry", person.getFirstName());
+        Assert.assertEquals("Potter", person.getLastName());
+        Assert.assertEquals("UK-1111-Harry-1", person.getPassport().getNumber());
+
+        Optional<Passport> mayBePassport = underTest.getPassportDetails("UK-1111-Harry-1");
+        Assert.assertTrue(mayBePassport.isPresent());
+        Passport passport = mayBePassport.get();
+        Assert.assertEquals("UK-1111-Harry-1", passport.getNumber());
     }
 
     @Test
-    public void shouldGetAllProductsFromDb() {
-        underTest.addProduct("Candy", 1);
-        underTest.addProduct("Cake", 25);
+    public void shouldGetAllPersonsWithPassportsFromDb() {
+        underTest.addPerson("Harry", "Potter", "UK-1111-Harry-1");
+        underTest.addPerson("Ron", "Weasley", "UK-2222-Ron-1");
 
-        List<Product> products = underTest.getAllProducts();
+        List<Person> allPersons = underTest.getAllPersons();
+        Assert.assertEquals(2, allPersons.size());
+        Assert.assertTrue(allPersons.contains(new Person("Harry", "Potter")));
+        Assert.assertTrue(allPersons.contains(new Person("Ron", "Weasley")));
 
-        Assert.assertSame(2, products.size());
-        Assert.assertTrue(products.contains(new Product("Candy", 1)));
-        Assert.assertTrue(products.contains(new Product("Cake", 25)));
+        List<Passport> allPassports = underTest.getAllPassports();
+        Assert.assertEquals(2, allPassports.size());
+        Assert.assertTrue(allPassports.contains(new Passport("UK-1111-Harry-1")));
+        Assert.assertTrue(allPassports.contains(new Passport("UK-2222-Ron-1")));
     }
 }

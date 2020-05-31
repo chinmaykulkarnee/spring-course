@@ -20,10 +20,17 @@
     <tx:annotation-driven transaction-manager="transactionManager" />
 
     <!-- TODO: enable the jpa repositories with correct value for base-package property -->
+    <jpa:repositories base-package="com.upgrad.course.repository" />
 
     <!-- TODO: define bean of DriverManagerDataSource with required properties
      use driverClassName=com.mysql.cj.jdbc.Driver
-     db-name = TEST, db-username = root, db-password = ""(empty string) -->
+     db-number = TEST, db-username = root, db-password = ""(empty string) -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/TEST" />
+        <property name="username" value="root" />
+        <property name="password" value="" />
+    </bean>
 
 
     <bean id="entityManagerFactory"
