@@ -3,7 +3,7 @@ package com.upgrad.course.entity;
 import javax.persistence.*;
 import java.util.Objects;
 
-@Entity
+// TODO: mark this class as a database entity class
 public class Product {
 
     @Id
