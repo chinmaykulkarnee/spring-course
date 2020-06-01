@@ -5,10 +5,11 @@ import com.upgrad.course.entity.Book;
 import com.upgrad.course.repository.AuthorRepository;
 import com.upgrad.course.repository.BookRepository;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.Optional;
+import java.util.List;
 
 public class App {
     public static void main( String[] args ) {
@@ -20,23 +21,23 @@ public class App {
     BookRepository bookRepository = ctx.getBean(BookRepository.class);
 
     @Transactional
-    public void addBookWithAuthors(String name, Long price, ArrayList<Author> authors) {
+    public void addBookWithAuthors(String name, Long price, List<Author> authors) {
         Book book = new Book(name, price);
         authorRepository.saveAll(authors);
         book.setAuthors(authors);
         bookRepository.save(book);
     }
 
-    public Optional<Book> getBookDetails(String name) {
-        return bookRepository.findByName(name)
-        .stream()
-        .findFirst();
+    public List<Author> getAuthorsByName(String partialName) {
+        return authorRepository.findByNameLike(partialName);
     }
 
-    public Optional<Author> getAuthorDetails(String name) {
-        return authorRepository.findByName(name)
-                .stream()
-                .findFirst();
+    public List<Author> getAuthorsByRegistrationNumbers(List<Long> registrationNumbers) {
+        return authorRepository.findByRegistrationNumberList(registrationNumbers);
+    }
+
+    public Page<Book> getBooksWithPagination() {
+        return bookRepository.findAllBooksWithPagination(PageRequest.of(0, 5));
     }
 
     public void deleteAllBooks() {

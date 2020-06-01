@@ -15,12 +15,17 @@ public class Book {
 
     private Long price;
 
-    // TODO: add correct annotation for many-to-many mapping
-    // Note: you need to add fetch = FetchType.EAGER and cascade = CascadeType.REMOVE (for testing purpose)
-
-    // TODO: add annotation for creating join table with join columns from both side
-
+    @ManyToMany(
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.REMOVE
+    )
+    @JoinTable(
+            name = "book_author",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "author_id")
+    )
     // TODO: correctly define field for representing authors of this book
+    private List<Author> authors;
 
     public Book() {
         //Default constructor needed for JPA.
