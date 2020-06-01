@@ -26,14 +26,4 @@ public class AuthorServiceTest {
         Author authorDetails = service.getAuthorDetails(112233L);
         Assert.assertEquals(new Author("J.K. Rowling", 112233L), authorDetails);
     }
-
-    @Test(expected = Exception.class)
-    public void shouldThrowExceptionWhenNumberIsNegative() throws Exception {
-        service.getAuthorDetails(-1L);
-    }
-
-    @Test(expected = Exception.class)
-    public void shouldThrowExceptionWhenAuthorNotFound() throws Exception {
-        service.getAuthorDetails(442211L);
-    }
 }

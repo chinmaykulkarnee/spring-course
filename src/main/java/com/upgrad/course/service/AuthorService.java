@@ -13,10 +13,6 @@ public class AuthorService {
     private AuthorRepository authorRepository;
 
     // TODO: autowire author repository
-    @Autowired
-    public AuthorService(AuthorRepository authorRepository) {
-        this.authorRepository = authorRepository;
-    }
 
     protected void saveAll(List<Author> author) {
         authorRepository.saveAll(author);
@@ -29,11 +25,9 @@ public class AuthorService {
 
     public Author getAuthorDetails(Long number) throws Exception {
         // TODO: validate registration number before passing it to the database
-        validateRegistrationNumber(number);
 
         // TODO: use authorRepository to get author by registration number from db and throw exception if author not found
-        return authorRepository.findByRegistrationNumber(number)
-                .orElseThrow(() -> new Exception("Author not found"));
+        return null;
     }
 
     public void deleteAllAuthors() {

@@ -30,15 +30,6 @@ public class BookServiceTest {
         service.saveBookWithAuthors("Hogwarts Book", 100L, authors);
     }
 
-    @Test(expected = Exception.class)
-    public void shouldThrowExceptionWhenPriceIsNegative() throws Exception {
-        ArrayList<Author> authors = new ArrayList<>();
-        authors.add(new Author("J.K. Rowling", 112233L));
-        authors.add(new Author("Albert Dumbledore", 332211L));
-
-        service.saveBookWithAuthors("Hogwarts Book", -1L, authors);
-    }
-
     @Test
     public void shouldGetBookByName() throws Exception {
         ArrayList<Author> authors = new ArrayList<>();
