@@ -2,12 +2,11 @@ package com.upgrad.course.repository;
 
 import com.upgrad.course.entity.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import java.util.Optional;
 
+@Repository
 public interface BookRepository extends JpaRepository<Book, Integer> {
-
-    // TODO: define query using @Query annotation to select books in the order of descending price
-    // TODO: update this method to return books with paginated request and response
-    List<Book> findAllBooksWithPagination();
+    Optional<Book> findBookByName(String name);
 }
