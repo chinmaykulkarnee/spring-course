@@ -1,7 +1,7 @@
 package com.upgrad.course;
 
 import com.upgrad.course.entity.Product;
-import com.upgrad.course.service.ProductService;
+import com.upgrad.course.repository.ProductRepository;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.List;
@@ -13,27 +13,27 @@ public class App {
     }
 
     ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
-    ProductService productService = ctx.getBean(ProductService.class);
+    ProductRepository productRepository = ctx.getBean(ProductRepository.class);
 
     public void addProduct(String name, Integer price) {
-        productService.add(new Product(name, price));
+        productRepository.save(new Product(name, price));
     }
 
     public Optional<Product> getProductDetails(String name) {
-        return productService.getDetails(name)
+        return productRepository.findByName(name)
                 .stream()
                 .findFirst();
     }
 
     public List<Product> getAllProducts() {
-        return productService.listAll();
+        return productRepository.findAll();
     }
 
     public List<Product> getProductsWithPriceGreaterThan(Integer price) {
-        return productService.getProductsByPriceGreaterThan(price);
+        return productRepository.findByPriceGreaterThan(price);
     }
 
     public void deleteAll() {
-        productService.deleteAll();
+        productRepository.deleteAll();
     }
 }
