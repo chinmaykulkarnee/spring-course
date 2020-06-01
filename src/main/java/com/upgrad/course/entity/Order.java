@@ -15,7 +15,6 @@ public class Order {
     private String userId;
 
     // TODO: add correct annotation for one-to-many mapping
-    @OneToMany(mappedBy= "order", fetch=FetchType.EAGER)
     private List<Item> items;
 
     public Order() {

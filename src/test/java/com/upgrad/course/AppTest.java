@@ -39,24 +39,4 @@ public class AppTest {
         Order orderWithItem = mayBeOrderAfter.get();
         Assert.assertTrue(orderWithItem.getItems().contains(new Item("Cake", 20L)));
     }
-
-    @Test
-    public void shouldAddMultipleItemsForOrderToDb() {
-        underTest.addOrder("Harry");
-
-        Optional<Order> mayBeOrder = underTest.getOrderDetails("Harry");
-        Assert.assertTrue(mayBeOrder.isPresent());
-        Order order = mayBeOrder.get();
-        Assert.assertEquals("Harry", order.getUserId());
-
-        underTest.addItem("Cake", 20L, order);
-        underTest.addItem("Bread", 20L, order);
-
-        Optional<Order> mayBeOrderAfter = underTest.getOrderDetails("Harry");
-        Assert.assertTrue(mayBeOrderAfter.isPresent());
-        Order orderWithItem = mayBeOrderAfter.get();
-        Assert.assertEquals(2, orderWithItem.getItems().size());
-        Assert.assertTrue(orderWithItem.getItems().contains(new Item("Cake", 20L)));
-        Assert.assertTrue(orderWithItem.getItems().contains(new Item("Bread", 20L)));
-    }
 }
