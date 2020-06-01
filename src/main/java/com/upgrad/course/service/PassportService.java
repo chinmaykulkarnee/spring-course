@@ -21,13 +21,13 @@ public class PassportService {
     // TODO: implement method to get all the passports from the database
     @Transactional
     public List<Passport> listAll() {
-        return null;
+        return passportRepository.findAll();
     }
 
     // TODO: implement method to get details of the passport by number from the database
     @Transactional
     public List<Passport> getDetails(String number) {
-        return null;
+        return passportRepository.findByNumber(number);
     }
 
     @Transactional

@@ -5,6 +5,7 @@ import java.util.Objects;
 
 @Entity
 // TODO: give custom table name as "person"
+@Table(name = "person")
 public class Person {
 
     @Id
@@ -16,7 +17,9 @@ public class Person {
     private String lastName;
 
     // TODO: add correct annotation for one-to-one mapping with cascade type all to delete mapped passports
+    @OneToOne(cascade = CascadeType.ALL)
     // TODO: add correct annotation for setting up join column giving it custom name as "passport_id" and do not allow null values
+    @JoinColumn(name = "passport_id", nullable = false)
     private Passport passport;
 
     public Person() {

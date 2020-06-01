@@ -5,6 +5,7 @@ import java.util.Objects;
 
 @Entity
 // TODO: give custom table name as "passport"
+@Table(name = "passport")
 public class Passport {
 
     @Id
@@ -14,6 +15,7 @@ public class Passport {
     private String number;
 
     // TODO: add correct annotation for one-to-one mapping with mappedBy property pointing to "passport"
+    @OneToOne(mappedBy = "passport")
     private Person person;
 
     public Passport() {
