@@ -24,4 +24,24 @@ public class AppTest {
         Assert.assertSame(10, product.getPrice());
         Assert.assertEquals("Ice-cream", product.getName());
     }
+
+    @Test
+    public void shouldGetProductDetailsFromDb() {
+        underTest.addProduct("Chocolate", 2);
+
+        Product product = underTest.getProductDetails("Chocolate");
+
+        Assert.assertSame(2, product.getPrice());
+        Assert.assertEquals("Chocolate", product.getName());
+    }
+
+    @Test
+    public void shouldGetAllProductsFromDb() {
+        underTest.addProduct("Candy", 1);
+        underTest.addProduct("Cake", 25);
+
+        List<Product> products = underTest.getAllProducts();
+
+        Assert.assertSame(2, products.size());
+    }
 }
