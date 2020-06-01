@@ -17,6 +17,7 @@ public class ProductService {
     private final ProductDao productDao;
 
     // TODO: autowire ProductDao
+    @Autowired
     public ProductService(ProductDao productDao) {
         this.productDao = productDao;
     }
