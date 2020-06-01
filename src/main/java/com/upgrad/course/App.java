@@ -2,8 +2,8 @@ package com.upgrad.course;
 
 import com.upgrad.course.entity.Passport;
 import com.upgrad.course.entity.Person;
-import com.upgrad.course.service.PassportService;
-import com.upgrad.course.service.PersonService;
+import com.upgrad.course.repository.PassportRepository;
+import com.upgrad.course.repository.PersonRepository;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.List;
@@ -15,41 +15,41 @@ public class App {
     }
 
     ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
-    PassportService passportService = ctx.getBean(PassportService.class);
-    PersonService personService = ctx.getBean(PersonService.class);
+    PassportRepository passportRepository = ctx.getBean(PassportRepository.class);
+    PersonRepository personRepository = ctx.getBean(PersonRepository.class);
 
 
     public void addPerson(String firstName, String lastName, String passportNumber) {
         Person person = new Person(firstName, lastName);
         person.setPassport(new Passport(passportNumber));
-        personService.add(person);
+        personRepository.save(person);
     }
 
     public Optional<Passport> getPassportDetails(String number) {
-        return passportService.getDetails(number)
+        return passportRepository.findByNumber(number)
                 .stream()
                 .findFirst();
     }
 
     public Optional<Person> getPersonDetails(String firstName) {
-        return personService.getDetailsByFirstName(firstName)
+        return personRepository.findByFirstName(firstName)
                 .stream()
                 .findFirst();
     }
 
     public List<Passport> getAllPassports() {
-        return passportService.listAll();
+        return passportRepository.findAll();
     }
 
     public List<Person> getAllPersons() {
-        return personService.listAll();
+        return personRepository.findAll();
     }
 
     public void deleteAllPersons() {
-        personService.deleteAll();
+        personRepository.deleteAll();
     }
 
     public void deleteAllPassports() {
-        passportService.deleteAll();
+        passportRepository.deleteAll();
     }
 }
