@@ -17,9 +17,7 @@ public class Author {
 
     // TODO: add correct annotation for many-to-many mapping with correct mappedBy properties
     // Note: you need to add fetch = FetchType.EAGER (for testing purpose)
-    @ManyToMany(mappedBy = "authors", fetch = FetchType.EAGER)
     // TODO: correctly define field for representing books of this author
-    private List<Book> books;
 
     public Author() {
         //Default constructor needed for JPA.

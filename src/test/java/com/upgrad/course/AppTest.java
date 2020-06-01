@@ -37,23 +37,4 @@ public class AppTest {
         Assert.assertTrue(bookAuthors.contains(new Author("J.K. Rowling", 112233L)));
         Assert.assertTrue(bookAuthors.contains(new Author("Albert Dumbledore", 332211L)));
     }
-
-    @Test
-    public void shouldGetBooksFromAuthorsToDb() {
-        ArrayList<Author> authors = new ArrayList<>();
-        authors.add(new Author("J.K. Rowling", 112233L));
-        authors.add(new Author("Albert Dumbledore", 332211L));
-
-        underTest.addBookWithAuthors("Hogwarts Book", 100L, authors);
-        underTest.addBookWithAuthors("Hogwarts Book Part 2", 200L, authors);
-
-        Optional<Author> mayBeAuthor = underTest.getAuthorDetails("J.K. Rowling");
-        Assert.assertTrue(mayBeAuthor.isPresent());
-        Author author = mayBeAuthor.get();
-        Assert.assertEquals("J.K. Rowling", author.getName());
-        List<Book> books = author.getBooks();
-        Assert.assertEquals(2, books.size());
-        Assert.assertTrue(books.contains(new Book("Hogwarts Book", 100L)));
-        Assert.assertTrue(books.contains(new Book("Hogwarts Book Part 2", 200L)));
-    }
 }
