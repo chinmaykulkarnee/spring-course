@@ -1,12 +1,13 @@
 package com.upgrad.course;
 
-import com.upgrad.course.entity.Item;
-import com.upgrad.course.entity.Order;
-import com.upgrad.course.repository.ItemRepository;
-import com.upgrad.course.repository.OrderRepository;
+import com.upgrad.course.entity.Author;
+import com.upgrad.course.entity.Book;
+import com.upgrad.course.repository.AuthorRepository;
+import com.upgrad.course.repository.BookRepository;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.util.List;
+import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.Optional;
 
 public class App {
@@ -15,46 +16,34 @@ public class App {
     }
 
     ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
-    ItemRepository itemRepository = ctx.getBean(ItemRepository.class);
-    OrderRepository orderRepository = ctx.getBean(OrderRepository.class);
+    AuthorRepository authorRepository = ctx.getBean(AuthorRepository.class);
+    BookRepository bookRepository = ctx.getBean(BookRepository.class);
 
-
-    public void addOrder(String userId) {
-        Order order = new Order(userId);
-        orderRepository.save(order);
+    @Transactional
+    public void addBookWithAuthors(String name, Long price, ArrayList<Author> authors) {
+        Book book = new Book(name, price);
+        authorRepository.saveAll(authors);
+        book.setAuthors(authors);
+        bookRepository.save(book);
     }
 
-    public void addItem(String name, Long price, Order order) {
-        Item item = new Item(name, price);
-        item.setOrder(order);
-        itemRepository.save(item);
+    public Optional<Book> getBookDetails(String name) {
+        return bookRepository.findByName(name)
+        .stream()
+        .findFirst();
     }
 
-    public Optional<Item> getItemDetail(String name) {
-        return itemRepository.findByName(name)
+    public Optional<Author> getAuthorDetails(String name) {
+        return authorRepository.findByName(name)
                 .stream()
                 .findFirst();
     }
 
-    public Optional<Order> getOrderDetails(String userId) {
-        return orderRepository.findByUserId(userId)
-                .stream()
-                .findFirst();
+    public void deleteAllBooks() {
+        bookRepository.deleteAll();
     }
 
-    public List<Item> getAllItems() {
-        return itemRepository.findAll();
-    }
-
-    public List<Order> getAllOrders() {
-        return orderRepository.findAll();
-    }
-
-    public void deleteAllOrders() {
-        orderRepository.deleteAll();
-    }
-
-    public void deleteAllItems() {
-        itemRepository.deleteAll();
+    public void deleteAllAuthors() {
+        authorRepository.deleteAll();
     }
 }
