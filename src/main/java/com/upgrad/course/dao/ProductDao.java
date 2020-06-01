@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Component
@@ -15,6 +16,7 @@ public class ProductDao {
     private EntityManager em;
 
     // TODO: use EntityManager method to save product to database
+    @Transactional
     public void persist(Product product) {
         em.persist(product);
     }
@@ -32,6 +34,7 @@ public class ProductDao {
                 .getResultList();
     }
 
+    @Transactional
     public void deleteAll() {
         em.createQuery("DELETE FROM Product")
                 .executeUpdate();

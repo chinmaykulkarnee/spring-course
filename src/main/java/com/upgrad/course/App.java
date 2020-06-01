@@ -1,7 +1,7 @@
 package com.upgrad.course;
 
+import com.upgrad.course.dao.ProductDao;
 import com.upgrad.course.entity.Product;
-import com.upgrad.course.service.ProductService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.List;
@@ -12,21 +12,21 @@ public class App {
     }
 
     ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
-    ProductService productService = ctx.getBean(ProductService.class);
+    ProductDao productDao = ctx.getBean(ProductDao.class);
 
     public void addProduct(String name, Integer price) {
-        productService.add(new Product(name, price));
+        productDao.persist(new Product(name, price));
     }
 
     public Product getProductDetails(String name) {
-        return productService.getDetails(name);
+        return productDao.find(name);
     }
 
     public List<Product> getAllProducts() {
-        return productService.listAll();
+        return productDao.findAll();
     }
 
     public void deleteAll() {
-        productService.deleteAll();
+        productDao.deleteAll();
     }
 }
