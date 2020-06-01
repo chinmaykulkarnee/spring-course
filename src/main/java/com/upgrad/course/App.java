@@ -2,8 +2,8 @@ package com.upgrad.course;
 
 import com.upgrad.course.entity.Item;
 import com.upgrad.course.entity.Order;
-import com.upgrad.course.service.ItemService;
-import com.upgrad.course.service.OrderService;
+import com.upgrad.course.repository.ItemRepository;
+import com.upgrad.course.repository.OrderRepository;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.List;
@@ -15,46 +15,46 @@ public class App {
     }
 
     ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
-    ItemService itemService = ctx.getBean(ItemService.class);
-    OrderService orderService = ctx.getBean(OrderService.class);
+    ItemRepository itemRepository = ctx.getBean(ItemRepository.class);
+    OrderRepository orderRepository = ctx.getBean(OrderRepository.class);
 
 
     public void addOrder(String userId) {
         Order order = new Order(userId);
-        orderService.add(order);
+        orderRepository.save(order);
     }
 
     public void addItem(String name, Long price, Order order) {
         Item item = new Item(name, price);
         item.setOrder(order);
-        itemService.add(item);
+        itemRepository.save(item);
     }
 
     public Optional<Item> getItemDetail(String name) {
-        return itemService.getDetails(name)
+        return itemRepository.findByName(name)
                 .stream()
                 .findFirst();
     }
 
     public Optional<Order> getOrderDetails(String userId) {
-        return orderService.getDetailsByUserId(userId)
+        return orderRepository.findByUserId(userId)
                 .stream()
                 .findFirst();
     }
 
     public List<Item> getAllItems() {
-        return itemService.listAll();
+        return itemRepository.findAll();
     }
 
     public List<Order> getAllOrders() {
-        return orderService.listAll();
+        return orderRepository.findAll();
     }
 
     public void deleteAllOrders() {
-        orderService.deleteAll();
+        orderRepository.deleteAll();
     }
 
     public void deleteAllItems() {
-        itemService.deleteAll();
+        itemRepository.deleteAll();
     }
 }

@@ -21,6 +21,7 @@
 
     <jpa:repositories base-package="com.upgrad.course.repository" />
 
+    <!-- TODO: define bean of DriverManagerDataSource with required properties
      use driverClassName=com.mysql.cj.jdbc.Driver
      db-name = TEST, db-username = root, db-password = ""(empty string) -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
