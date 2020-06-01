@@ -15,7 +15,9 @@ public class Item {
     private Long price;
 
     // TODO: add correct annotation for many-to-one mapping
+    @ManyToOne
     // TODO: add correct annotation for setting up join column giving it custom name as "order_id" and do not allow null values
+    @JoinColumn(name="order_id", nullable=false)
     private Order order;
 
     public Item() {
