@@ -12,26 +12,21 @@ import java.util.List;
 public class ProductDao {
 
     // TODO: Inject EntityManager using special annotation @PersistenceContext
-    @PersistenceContext
     private EntityManager em;
 
     // TODO: use EntityManager method to save product to database
     @Transactional
     public void persist(Product product) {
-        em.persist(product);
     }
 
     // TODO: use EntityManager method to get product by name from the database (hint: use query parameters as ?1)
     public Product find(String name) {
-        return (Product) em.createQuery("SELECT p FROM Product p WHERE p.name = ?1")
-                .setParameter(1, name)
-                .getSingleResult();
+        return null;
     }
 
     // TODO: use EntityManager method to get products from the database
     public List<Product> findAll() {
-        return em.createQuery("SELECT p FROM Product p")
-                .getResultList();
+        return null;
     }
 
     @Transactional
