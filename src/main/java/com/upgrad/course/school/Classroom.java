@@ -5,7 +5,7 @@ import com.upgrad.course.factory.StudentFactory;
 import java.util.Set;
 
 // TODO: mark this class as an auto scan component for bean creation
-public class DivisionB {
+public class Classroom {
     private StudentFactory studentFactory;
     private BenchFactory benchFactory;
     private Teacher teacher;

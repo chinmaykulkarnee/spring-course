@@ -1,6 +1,6 @@
 package com.upgrad.course;
 
-import com.upgrad.course.school.DivisionB;
+import com.upgrad.course.school.Classroom;
 import com.upgrad.course.school.Student;
 import com.upgrad.course.school.Teacher;
 import org.springframework.context.ApplicationContext;
@@ -16,17 +16,17 @@ public class App {
     ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 
     public Set<Student> getDivisionBStudents() {
-        DivisionB divisionB = (DivisionB) context.getBean("divisionB");
-        return divisionB.getStudents();
+        Classroom classroom = (Classroom) context.getBean("classroom");
+        return classroom.getStudents();
     }
 
     public int getDivisionBBenchCount() {
-        DivisionB divisionB = (DivisionB) context.getBean("divisionB");
-        return divisionB.getBenchCount();
+        Classroom classroom = (Classroom) context.getBean("classroom");
+        return classroom.getBenchCount();
     }
 
     public Teacher getTeacher() {
-        DivisionB divisionB = (DivisionB) context.getBean("divisionB");
-        return divisionB.getTeacher();
+        Classroom classroom = (Classroom) context.getBean("classroom");
+        return classroom.getTeacher();
     }
 }
