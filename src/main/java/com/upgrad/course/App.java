@@ -1,8 +1,6 @@
 package com.upgrad.course;
 
-import com.upgrad.course.juice.BananaJuice;
-import com.upgrad.course.juice.OrangeJuice;
-import com.upgrad.course.juice.StrawberryJuice;
+import com.upgrad.course.juice.Juice;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -15,17 +13,17 @@ public class App {
     }
 
     public String getOrangeJuice() {
-        OrangeJuice orangeJuice = (OrangeJuice) context.getBean("orangeJuice");
+        Juice orangeJuice = (Juice) context.getBean("orangeJuice");
         return orangeJuice.get();
     }
 
     public String getStrawberryJuice() {
-        StrawberryJuice orangeJuice = (StrawberryJuice) context.getBean("strawberryJuice");
-        return orangeJuice.get();
+        Juice strawberryJuice = (Juice) context.getBean("strawberryJuice");
+        return strawberryJuice.get();
     }
 
     public String getBananaJuice() {
-        BananaJuice orangeJuice = (BananaJuice) context.getBean("bananaJuice");
-        return orangeJuice.get();
+        Juice bananaJuice = (Juice) context.getBean("bananaJuice");
+        return bananaJuice.get();
     }
 }

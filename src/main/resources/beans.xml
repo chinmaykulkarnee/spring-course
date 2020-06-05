@@ -15,7 +15,7 @@
 
     <!-- TODO: define Strawberry class bean  -->
 
-    <!-- TODO: define BananaJuice bean to inject dependencies via constructor autowiring  -->
+    <!-- TODO: define BananaJuice bean to inject dependencies via byType autowiring  -->
 
     <!-- TODO: define Banana class bean  -->
 </beans>

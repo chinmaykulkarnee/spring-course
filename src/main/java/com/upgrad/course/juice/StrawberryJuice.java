@@ -2,7 +2,7 @@ package com.upgrad.course.juice;
 
 import com.upgrad.course.fruit.Strawberry;
 
-public class StrawberryJuice {
+public class StrawberryJuice implements Juice {
     private Strawberry strawberry;
 
     // TODO: inject Strawberry dependency via setter
