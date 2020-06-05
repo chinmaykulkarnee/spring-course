@@ -1,24 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- TODO: enable annotation based annotations -->
+    <context:annotation-config/>
 
     <!-- TODO: define bean of Classroom -->
+    <bean id="onlineClassroom" class="com.upgrad.course.school.OnlineClassroom">
+    </bean>
 
     <!-- TODO: define bean of student using constructor based property injection (make sure to pass 2 constructor arguments name & id)
      student name should be "Harry Potter" and student id should be "student1"-->
+    <bean id="student" class="com.upgrad.course.school.Student">
+        <constructor-arg index="0" value="Harry Potter"/>
+        <constructor-arg index="1" value="student1"/>
+    </bean>
 
     <!-- TODO: define bean of teacher using setter based property injection and teacher name should be "Albus Dumbledore" -->
+    <bean id="teacher" class="com.upgrad.course.school.Teacher">
+        <property name="name" value="Albus Dumbledore"/>
+    </bean>
 
     <!-- TODO: define bean of bench using constructor based property injection and course name should be "Spring"
      Make sure to give the name of the bean as springCourse -->
+    <bean id="springCourse" class="com.upgrad.course.school.Course">
+        <constructor-arg index="0" value="Spring"/>
+    </bean>
 
     <!-- TODO: define another bean of bench using constructor based property injection and course name should be "Java"
     Make sure to give the name of the bean as javaCourse -->
+    <bean id="javaCourse" class="com.upgrad.course.school.Course">
+        <constructor-arg index="0" value="Java"/>
+    </bean>
 
 </beans>
