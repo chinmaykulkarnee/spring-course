@@ -1,9 +1,9 @@
 package com.upgrad.course.school;
 
-public class ClassA {
+public class OnlineClassroom {
 
-    // TODO: Inject wooden bench using property based autowiring
-    private Bench bench;
+    // TODO: Inject course bean with name springCourse using property based autowiring
+    private Course course;
 
     private Student student;
     private Teacher teacher;
@@ -19,6 +19,6 @@ public class ClassA {
     }
 
     public String getBenchType() {
-        return this.bench.getType();
+        return this.course.getName();
     }
 }

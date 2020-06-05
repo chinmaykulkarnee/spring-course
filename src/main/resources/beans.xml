@@ -8,14 +8,17 @@
 
     <!-- TODO: enable annotation based annotations -->
 
-    <!-- TODO: define bean of ClassA -->
+    <!-- TODO: define bean of Classroom -->
 
-    <!-- TODO: define bean of student using constructor based property injection -->
+    <!-- TODO: define bean of student using constructor based property injection (make sure to pass 2 constructor arguments name & id)
+     student name should be "Harry Potter" and student id should be "student1"-->
 
-    <!-- TODO: define bean of teacher using setter based property injection -->
+    <!-- TODO: define bean of teacher using setter based property injection and teacher name should be "Albus Dumbledore" -->
 
-    <!-- TODO: define bean of bench using constructor based property injection with type value as "Wooden" -->
+    <!-- TODO: define bean of bench using constructor based property injection and course name should be "Spring"
+     Make sure to give the name of the bean as springCourse -->
 
-    <!-- TODO: define another bean of bench using constructor based property injection with type value as "Steel" -->
+    <!-- TODO: define another bean of bench using constructor based property injection and course name should be "Java"
+    Make sure to give the name of the bean as javaCourse -->
 
 </beans>

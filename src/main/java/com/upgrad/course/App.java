@@ -1,6 +1,6 @@
 package com.upgrad.course;
 
-import com.upgrad.course.school.ClassA;
+import com.upgrad.course.school.OnlineClassroom;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -12,17 +12,17 @@ public class App {
     ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 
     public String getStudentDetails() {
-        ClassA classA = (ClassA) context.getBean("classA");
-        return classA.getStudentDetails();
+        OnlineClassroom onlineClassroom = context.getBean(OnlineClassroom.class);
+        return onlineClassroom.getStudentDetails();
     }
 
     public String getTeacherDetails() {
-        ClassA classA = (ClassA) context.getBean("classA");
-        return classA.getTeacherDetails();
+        OnlineClassroom onlineClassroom = context.getBean(OnlineClassroom.class);
+        return onlineClassroom.getTeacherDetails();
     }
 
     public String getBenchType() {
-        ClassA classA = (ClassA) context.getBean("classA");
-        return classA.getBenchType();
+        OnlineClassroom onlineClassroom = context.getBean(OnlineClassroom.class);
+        return onlineClassroom.getBenchType();
     }
 }
