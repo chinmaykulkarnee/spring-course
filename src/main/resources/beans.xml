@@ -17,12 +17,14 @@
     <context:component-scan base-package="com.upgrad.course" />
     <context:annotation-config />
 
-    <!-- TODO: define bean of DriverManagerDataSource with required properties
-     use driverClassName=com.mysql.cj.jdbc.Driver
-     db-name = TEST, db-username = root, db-password = ""(empty string) -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/TEST" />
+        <property name="username" value="root" />
+        <property name="password" value="root" />
+    </bean>
 
-    <!-- TODO: define bean of LocalContainerEntityManagerFactoryBean with required properties
-    fill correct value for dataSource-ref -->
+    <!-- TODO: define bean of LocalContainerEntityManagerFactoryBean by adding reference to dataSource bean -->
     <bean id="entityManagerFactory"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
           p:packagesToScan="com.upgrad.course.entity"

@@ -11,7 +11,8 @@ import java.util.List;
 @Component
 public class ProductDao {
 
-    // TODO: Inject EntityManager using special annotation @PersistenceContext
+    // TODO: Inject EntityManager using special annotation
+    // Note: Autowired annotation does not inject EntityManager
     private EntityManager em;
 
     // TODO: use EntityManager method to save product to database
