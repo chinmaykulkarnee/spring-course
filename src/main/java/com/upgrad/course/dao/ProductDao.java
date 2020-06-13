@@ -9,30 +9,35 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Component
-public class ProductDao {
+public class ProductDao implements Dao<Product> {
 
     // TODO: Inject EntityManager using special annotation
     // Note: Autowired annotation does not inject EntityManager
+    @PersistenceContext
     private EntityManager em;
 
     // TODO: use EntityManager method to save product to database
     @Transactional
     public void persist(Product product) {
+        em.persist(product);
     }
 
     // TODO: use EntityManager method to get product by name from the database (hint: use query parameters as ?1)
     public Product find(String name) {
-        return null;
+        return (Product) em.createQuery("SELECT p FROM Product p WHERE p.name = ?1")
+                .setParameter(1, name)
+                .getSingleResult();
     }
 
     // TODO: use EntityManager method to get products from the database
     public List<Product> findAll() {
-        return null;
+        return em.createQuery("SELECT p FROM Product p")
+                .getResultList();
     }
 
     @Transactional
     public void deleteAll() {
-        em.createQuery("DELETE FROM Product")
+        em.createQuery("DELETE FROM Product p")
                 .executeUpdate();
     }
 }

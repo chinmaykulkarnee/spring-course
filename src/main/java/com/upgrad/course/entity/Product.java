@@ -5,9 +5,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 // TODO: mark this class as database entity
+@Entity
 public class Product {
 
     // TODO: define id as primary key with auto incrementing value
+    @Id
+    @GeneratedValue
     private Integer id;
 
     private String name;
