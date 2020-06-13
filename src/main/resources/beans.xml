@@ -28,7 +28,7 @@
     <bean id="entityManagerFactory"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
           p:packagesToScan="com.upgrad.course.entity"
-          p:dataSource-ref="dataSource">
+          p:dataSource-ref="">
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
                 <property name="generateDdl" value="true" />
