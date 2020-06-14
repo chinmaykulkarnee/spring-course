@@ -1,11 +1,10 @@
 package com.upgrad.course.library.inventory;
 
-// TODO: Implement interface to remove tight coupling
-public class HistoryBooksInventory implements BookInventory {
+// TODO: Define and Implement interface to remove tight coupling
+public class HistoryBooksInventory {
 
     String [] books = {"book1", "book2", "book3"};
 
-    @Override
     public String[] getBooks() {
         return books;
     }

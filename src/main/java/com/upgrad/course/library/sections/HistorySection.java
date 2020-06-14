@@ -1,21 +1,17 @@
 package com.upgrad.course.library.sections;
 
-import com.upgrad.course.library.inventory.BookInventory;
+import com.upgrad.course.library.inventory.HistoryBooksInventory;
 
-// TODO: Implement interface to remove tight coupling
-public class HistorySection implements BookSection {
-
-    private BookInventory historyBooksInventory;
+// TODO: Define and Implement interface BookSection to remove tight coupling
+//  Note: Make sure to name the interface as BookSection otherwise tests will fail
+public class HistorySection {
 
     // TODO: Add a constructor with inventory interface parameter
-    public HistorySection(BookInventory historyBooksInventory) {
-        this.historyBooksInventory = historyBooksInventory;
-    }
 
     // TODO: HistorySection class is tightly coupled with HistoryBooksInventory
     //  Make it loosely coupled by using principle of dependency injection and use of interface
-    @Override
     public int getTotalBooks() {
-        return this.historyBooksInventory.getBooks().length;
+        HistoryBooksInventory historyBooksInventory = new HistoryBooksInventory();
+        return historyBooksInventory.getBooks().length;
     }
 }
